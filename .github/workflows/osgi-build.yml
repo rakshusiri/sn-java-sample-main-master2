@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       build_required: ${{ steps.plan.outputs.build_required }}
-      build_mode: ${{ steps.plan.outputs.build_mode }}
+      build_mode: ${{ steps.scenario.outputs.mode }}
       maven_projects: ${{ steps.plan.outputs.maven_projects }}
     steps:
       - name: Check out repository history
@@ -79,7 +79,7 @@ jobs:
       - name: Show planner outputs
         run: |
           echo "build_required=${{ steps.plan.outputs.build_required }}"
-          echo "build_mode=${{ steps.plan.outputs.build_mode }}"
+          echo "build_mode=${{ steps.scenario.outputs.mode }}"
           echo "maven_projects=${{ steps.plan.outputs.maven_projects }}"
 
       - name: Render dependency report
