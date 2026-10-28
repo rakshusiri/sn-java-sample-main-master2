@@ -1,0 +1,747 @@
+{
+  "changedProducts": [
+    "catalog"
+  ],
+  "dependencyPaths": {
+    "catalog": [
+      "catalog -> orders",
+      "catalog -> payment",
+      "catalog -> reporting",
+      "catalog -> shipping",
+      "catalog -> orders -> reporting",
+      "catalog -> payment -> reporting",
+      "catalog -> shipping -> notification"
+    ]
+  },
+  "maven": {
+    "edges": [
+      {
+        "from": "thirdparty",
+        "kind": "contains-module",
+        "to": "thirdparty/plugins/com.northwind.oms.tpcl.org.slf4j"
+      },
+      {
+        "from": "thirdparty",
+        "kind": "contains-module",
+        "to": "thirdparty/features/com.northwind.oms.tpcl.slf4j.feature"
+      },
+      {
+        "from": "catalog",
+        "kind": "contains-module",
+        "to": "catalog/plugins/com.northwind.oms.core"
+      },
+      {
+        "from": "catalog",
+        "kind": "contains-module",
+        "to": "catalog/plugins/com.northwind.oms.inventory"
+      },
+      {
+        "from": "catalog",
+        "kind": "contains-module",
+        "to": "catalog/features/com.northwind.oms.catalog.feature"
+      },
+      {
+        "from": "customer",
+        "kind": "contains-module",
+        "to": "customer/plugins/com.northwind.oms.customer"
+      },
+      {
+        "from": "customer",
+        "kind": "contains-module",
+        "to": "customer/features/com.northwind.oms.customer.feature"
+      },
+      {
+        "from": "security",
+        "kind": "contains-module",
+        "to": "security/plugins/com.northwind.oms.security"
+      },
+      {
+        "from": "security",
+        "kind": "contains-module",
+        "to": "security/features/com.northwind.oms.security.feature"
+      },
+      {
+        "from": "payment",
+        "kind": "contains-module",
+        "to": "payment/plugins/com.northwind.oms.payment"
+      },
+      {
+        "from": "payment",
+        "kind": "contains-module",
+        "to": "payment/features/com.northwind.oms.payment.feature"
+      },
+      {
+        "from": "orders",
+        "kind": "contains-module",
+        "to": "orders/plugins/com.northwind.oms.pricing"
+      },
+      {
+        "from": "orders",
+        "kind": "contains-module",
+        "to": "orders/plugins/com.northwind.oms.gateway"
+      },
+      {
+        "from": "orders",
+        "kind": "contains-module",
+        "to": "orders/features/com.northwind.oms.orders.feature"
+      },
+      {
+        "from": "shipping",
+        "kind": "contains-module",
+        "to": "shipping/plugins/com.northwind.oms.shipping"
+      },
+      {
+        "from": "shipping",
+        "kind": "contains-module",
+        "to": "shipping/features/com.northwind.oms.shipping.feature"
+      },
+      {
+        "from": "notification",
+        "kind": "contains-module",
+        "to": "notification/plugins/com.northwind.oms.notification"
+      },
+      {
+        "from": "notification",
+        "kind": "contains-module",
+        "to": "notification/features/com.northwind.oms.notification.feature"
+      },
+      {
+        "from": "reporting",
+        "kind": "contains-module",
+        "to": "reporting/plugins/com.northwind.oms.reporting"
+      },
+      {
+        "from": "reporting",
+        "kind": "contains-module",
+        "to": "reporting/features/com.northwind.oms.reporting.feature"
+      }
+    ],
+    "projects": {
+      "catalog": {
+        "artifactId": "catalog",
+        "groupId": "com.northwind.oms.catalog",
+        "product": "catalog"
+      },
+      "catalog/features/com.northwind.oms.catalog.feature": {
+        "artifactId": "com.northwind.oms.catalog.feature",
+        "groupId": "com.northwind.oms.catalog",
+        "product": "catalog"
+      },
+      "catalog/plugins/com.northwind.oms.core": {
+        "artifactId": "com.northwind.oms.core",
+        "groupId": "com.northwind.oms.catalog",
+        "product": "catalog"
+      },
+      "catalog/plugins/com.northwind.oms.inventory": {
+        "artifactId": "com.northwind.oms.inventory",
+        "groupId": "com.northwind.oms.catalog",
+        "product": "catalog"
+      },
+      "customer": {
+        "artifactId": "customer",
+        "groupId": "com.northwind.oms.customer",
+        "product": "customer"
+      },
+      "customer/features/com.northwind.oms.customer.feature": {
+        "artifactId": "com.northwind.oms.customer.feature",
+        "groupId": "com.northwind.oms.customer",
+        "product": "customer"
+      },
+      "customer/plugins/com.northwind.oms.customer": {
+        "artifactId": "com.northwind.oms.customer",
+        "groupId": "com.northwind.oms.customer",
+        "product": "customer"
+      },
+      "notification": {
+        "artifactId": "notification",
+        "groupId": "com.northwind.oms.notification",
+        "product": "notification"
+      },
+      "notification/features/com.northwind.oms.notification.feature": {
+        "artifactId": "com.northwind.oms.notification.feature",
+        "groupId": "com.northwind.oms.notification",
+        "product": "notification"
+      },
+      "notification/plugins/com.northwind.oms.notification": {
+        "artifactId": "com.northwind.oms.notification",
+        "groupId": "com.northwind.oms.notification",
+        "product": "notification"
+      },
+      "orders": {
+        "artifactId": "orders",
+        "groupId": "com.northwind.oms.orders",
+        "product": "orders"
+      },
+      "orders/features/com.northwind.oms.orders.feature": {
+        "artifactId": "com.northwind.oms.orders.feature",
+        "groupId": "com.northwind.oms.orders",
+        "product": "orders"
+      },
+      "orders/plugins/com.northwind.oms.gateway": {
+        "artifactId": "com.northwind.oms.gateway",
+        "groupId": "com.northwind.oms.orders",
+        "product": "orders"
+      },
+      "orders/plugins/com.northwind.oms.pricing": {
+        "artifactId": "com.northwind.oms.pricing",
+        "groupId": "com.northwind.oms.orders",
+        "product": "orders"
+      },
+      "payment": {
+        "artifactId": "payment",
+        "groupId": "com.northwind.oms.payment",
+        "product": "payment"
+      },
+      "payment/features/com.northwind.oms.payment.feature": {
+        "artifactId": "com.northwind.oms.payment.feature",
+        "groupId": "com.northwind.oms.payment",
+        "product": "payment"
+      },
+      "payment/plugins/com.northwind.oms.payment": {
+        "artifactId": "com.northwind.oms.payment",
+        "groupId": "com.northwind.oms.payment",
+        "product": "payment"
+      },
+      "reporting": {
+        "artifactId": "reporting",
+        "groupId": "com.northwind.oms.reporting",
+        "product": "reporting"
+      },
+      "reporting/features/com.northwind.oms.reporting.feature": {
+        "artifactId": "com.northwind.oms.reporting.feature",
+        "groupId": "com.northwind.oms.reporting",
+        "product": "reporting"
+      },
+      "reporting/plugins/com.northwind.oms.reporting": {
+        "artifactId": "com.northwind.oms.reporting",
+        "groupId": "com.northwind.oms.reporting",
+        "product": "reporting"
+      },
+      "security": {
+        "artifactId": "security",
+        "groupId": "com.northwind.oms.security",
+        "product": "security"
+      },
+      "security/features/com.northwind.oms.security.feature": {
+        "artifactId": "com.northwind.oms.security.feature",
+        "groupId": "com.northwind.oms.security",
+        "product": "security"
+      },
+      "security/plugins/com.northwind.oms.security": {
+        "artifactId": "com.northwind.oms.security",
+        "groupId": "com.northwind.oms.security",
+        "product": "security"
+      },
+      "shipping": {
+        "artifactId": "shipping",
+        "groupId": "com.northwind.oms.shipping",
+        "product": "shipping"
+      },
+      "shipping/features/com.northwind.oms.shipping.feature": {
+        "artifactId": "com.northwind.oms.shipping.feature",
+        "groupId": "com.northwind.oms.shipping",
+        "product": "shipping"
+      },
+      "shipping/plugins/com.northwind.oms.shipping": {
+        "artifactId": "com.northwind.oms.shipping",
+        "groupId": "com.northwind.oms.shipping",
+        "product": "shipping"
+      },
+      "thirdparty": {
+        "artifactId": "thirdparty",
+        "groupId": "com.northwind.oms.thirdparty",
+        "product": "thirdparty"
+      },
+      "thirdparty/features/com.northwind.oms.tpcl.slf4j.feature": {
+        "artifactId": "com.northwind.oms.tpcl.slf4j.feature",
+        "groupId": "com.northwind.oms.thirdparty",
+        "product": "thirdparty"
+      },
+      "thirdparty/plugins/com.northwind.oms.tpcl.org.slf4j": {
+        "artifactId": "com.northwind.oms.tpcl.org.slf4j",
+        "groupId": "com.northwind.oms.thirdparty",
+        "product": "thirdparty"
+      }
+    }
+  },
+  "mode": "changed",
+  "osgi": {
+    "bundles": {
+      "com.northwind.oms.core": {
+        "exports": [
+          "com.northwind.oms.core.model",
+          "com.northwind.oms.core.spi"
+        ],
+        "path": "catalog/plugins/com.northwind.oms.core/META-INF/MANIFEST.MF",
+        "product": "catalog"
+      },
+      "com.northwind.oms.customer": {
+        "exports": [
+          "com.northwind.oms.customer"
+        ],
+        "path": "customer/plugins/com.northwind.oms.customer/META-INF/MANIFEST.MF",
+        "product": "customer"
+      },
+      "com.northwind.oms.gateway": {
+        "exports": [
+          "com.northwind.oms.gateway"
+        ],
+        "path": "orders/plugins/com.northwind.oms.gateway/META-INF/MANIFEST.MF",
+        "product": "orders"
+      },
+      "com.northwind.oms.inventory": {
+        "exports": [
+          "com.northwind.oms.inventory"
+        ],
+        "path": "catalog/plugins/com.northwind.oms.inventory/META-INF/MANIFEST.MF",
+        "product": "catalog"
+      },
+      "com.northwind.oms.notification": {
+        "exports": [
+          "com.northwind.oms.notification"
+        ],
+        "path": "notification/plugins/com.northwind.oms.notification/META-INF/MANIFEST.MF",
+        "product": "notification"
+      },
+      "com.northwind.oms.payment": {
+        "exports": [
+          "com.northwind.oms.payment"
+        ],
+        "path": "payment/plugins/com.northwind.oms.payment/META-INF/MANIFEST.MF",
+        "product": "payment"
+      },
+      "com.northwind.oms.pricing": {
+        "exports": [
+          "com.northwind.oms.pricing"
+        ],
+        "path": "orders/plugins/com.northwind.oms.pricing/META-INF/MANIFEST.MF",
+        "product": "orders"
+      },
+      "com.northwind.oms.reporting": {
+        "exports": [
+          "com.northwind.oms.reporting"
+        ],
+        "path": "reporting/plugins/com.northwind.oms.reporting/META-INF/MANIFEST.MF",
+        "product": "reporting"
+      },
+      "com.northwind.oms.security": {
+        "exports": [
+          "com.northwind.oms.security",
+          "com.northwind.oms.security.spi"
+        ],
+        "path": "security/plugins/com.northwind.oms.security/META-INF/MANIFEST.MF",
+        "product": "security"
+      },
+      "com.northwind.oms.shipping": {
+        "exports": [
+          "com.northwind.oms.shipping"
+        ],
+        "path": "shipping/plugins/com.northwind.oms.shipping/META-INF/MANIFEST.MF",
+        "product": "shipping"
+      },
+      "com.northwind.oms.tpcl.org.slf4j": {
+        "exports": [
+          "org.slf4j"
+        ],
+        "path": "thirdparty/plugins/com.northwind.oms.tpcl.org.slf4j/META-INF/MANIFEST.MF",
+        "product": "thirdparty"
+      }
+    },
+    "edges": [
+      {
+        "detail": "com.northwind.oms.core.model",
+        "from": "com.northwind.oms.inventory",
+        "fromProduct": "catalog",
+        "kind": "imports-package",
+        "to": "com.northwind.oms.core",
+        "toProduct": "catalog"
+      },
+      {
+        "detail": "com.northwind.oms.core.spi",
+        "from": "com.northwind.oms.inventory",
+        "fromProduct": "catalog",
+        "kind": "imports-package",
+        "to": "com.northwind.oms.core",
+        "toProduct": "catalog"
+      },
+      {
+        "detail": "com.northwind.oms.customer",
+        "from": "com.northwind.oms.notification",
+        "fromProduct": "notification",
+        "kind": "imports-package",
+        "to": "com.northwind.oms.customer",
+        "toProduct": "customer"
+      },
+      {
+        "detail": "com.northwind.oms.shipping",
+        "from": "com.northwind.oms.notification",
+        "fromProduct": "notification",
+        "kind": "imports-package",
+        "to": "com.northwind.oms.shipping",
+        "toProduct": "shipping"
+      },
+      {
+        "detail": "com.northwind.oms.tpcl.org.slf4j",
+        "from": "com.northwind.oms.notification",
+        "fromProduct": "notification",
+        "kind": "requires-bundle",
+        "to": "com.northwind.oms.tpcl.org.slf4j",
+        "toProduct": "thirdparty"
+      },
+      {
+        "detail": "com.northwind.oms.core.model",
+        "from": "com.northwind.oms.gateway",
+        "fromProduct": "orders",
+        "kind": "imports-package",
+        "to": "com.northwind.oms.core",
+        "toProduct": "catalog"
+      },
+      {
+        "detail": "com.northwind.oms.core.spi",
+        "from": "com.northwind.oms.gateway",
+        "fromProduct": "orders",
+        "kind": "imports-package",
+        "to": "com.northwind.oms.core",
+        "toProduct": "catalog"
+      },
+      {
+        "detail": "com.northwind.oms.inventory",
+        "from": "com.northwind.oms.gateway",
+        "fromProduct": "orders",
+        "kind": "imports-package",
+        "to": "com.northwind.oms.inventory",
+        "toProduct": "catalog"
+      },
+      {
+        "detail": "com.northwind.oms.pricing",
+        "from": "com.northwind.oms.gateway",
+        "fromProduct": "orders",
+        "kind": "imports-package",
+        "to": "com.northwind.oms.pricing",
+        "toProduct": "orders"
+      },
+      {
+        "detail": "com.northwind.oms.tpcl.org.slf4j",
+        "from": "com.northwind.oms.gateway",
+        "fromProduct": "orders",
+        "kind": "requires-bundle",
+        "to": "com.northwind.oms.tpcl.org.slf4j",
+        "toProduct": "thirdparty"
+      },
+      {
+        "detail": "com.northwind.oms.core.model",
+        "from": "com.northwind.oms.pricing",
+        "fromProduct": "orders",
+        "kind": "imports-package",
+        "to": "com.northwind.oms.core",
+        "toProduct": "catalog"
+      },
+      {
+        "detail": "com.northwind.oms.core.spi",
+        "from": "com.northwind.oms.pricing",
+        "fromProduct": "orders",
+        "kind": "imports-package",
+        "to": "com.northwind.oms.core",
+        "toProduct": "catalog"
+      },
+      {
+        "detail": "com.northwind.oms.core.model",
+        "from": "com.northwind.oms.payment",
+        "fromProduct": "payment",
+        "kind": "imports-package",
+        "to": "com.northwind.oms.core",
+        "toProduct": "catalog"
+      },
+      {
+        "detail": "com.northwind.oms.security.spi",
+        "from": "com.northwind.oms.payment",
+        "fromProduct": "payment",
+        "kind": "imports-package",
+        "to": "com.northwind.oms.security",
+        "toProduct": "security"
+      },
+      {
+        "detail": "com.northwind.oms.tpcl.org.slf4j",
+        "from": "com.northwind.oms.payment",
+        "fromProduct": "payment",
+        "kind": "requires-bundle",
+        "to": "com.northwind.oms.tpcl.org.slf4j",
+        "toProduct": "thirdparty"
+      },
+      {
+        "detail": "com.northwind.oms.core.model",
+        "from": "com.northwind.oms.reporting",
+        "fromProduct": "reporting",
+        "kind": "imports-package",
+        "to": "com.northwind.oms.core",
+        "toProduct": "catalog"
+      },
+      {
+        "detail": "com.northwind.oms.payment",
+        "from": "com.northwind.oms.reporting",
+        "fromProduct": "reporting",
+        "kind": "imports-package",
+        "to": "com.northwind.oms.payment",
+        "toProduct": "payment"
+      },
+      {
+        "detail": "com.northwind.oms.gateway",
+        "from": "com.northwind.oms.reporting",
+        "fromProduct": "reporting",
+        "kind": "imports-package",
+        "to": "com.northwind.oms.gateway",
+        "toProduct": "orders"
+      },
+      {
+        "detail": "com.northwind.oms.tpcl.org.slf4j",
+        "from": "com.northwind.oms.reporting",
+        "fromProduct": "reporting",
+        "kind": "requires-bundle",
+        "to": "com.northwind.oms.tpcl.org.slf4j",
+        "toProduct": "thirdparty"
+      },
+      {
+        "detail": "com.northwind.oms.core.model",
+        "from": "com.northwind.oms.shipping",
+        "fromProduct": "shipping",
+        "kind": "imports-package",
+        "to": "com.northwind.oms.core",
+        "toProduct": "catalog"
+      },
+      {
+        "detail": "com.northwind.oms.customer",
+        "from": "com.northwind.oms.shipping",
+        "fromProduct": "shipping",
+        "kind": "imports-package",
+        "to": "com.northwind.oms.customer",
+        "toProduct": "customer"
+      },
+      {
+        "from": "com.northwind.oms.catalog.feature",
+        "fromProduct": "catalog",
+        "kind": "contains-bundle",
+        "to": "com.northwind.oms.core",
+        "toProduct": "catalog"
+      },
+      {
+        "from": "com.northwind.oms.catalog.feature",
+        "fromProduct": "catalog",
+        "kind": "contains-bundle",
+        "to": "com.northwind.oms.inventory",
+        "toProduct": "catalog"
+      },
+      {
+        "from": "com.northwind.oms.customer.feature",
+        "fromProduct": "customer",
+        "kind": "contains-bundle",
+        "to": "com.northwind.oms.customer",
+        "toProduct": "customer"
+      },
+      {
+        "from": "com.northwind.oms.notification.feature",
+        "fromProduct": "notification",
+        "kind": "requires-feature",
+        "to": "com.northwind.oms.customer.feature",
+        "toProduct": "customer"
+      },
+      {
+        "from": "com.northwind.oms.notification.feature",
+        "fromProduct": "notification",
+        "kind": "requires-feature",
+        "to": "com.northwind.oms.shipping.feature",
+        "toProduct": "shipping"
+      },
+      {
+        "from": "com.northwind.oms.notification.feature",
+        "fromProduct": "notification",
+        "kind": "contains-bundle",
+        "to": "com.northwind.oms.notification",
+        "toProduct": "notification"
+      },
+      {
+        "from": "com.northwind.oms.orders.feature",
+        "fromProduct": "orders",
+        "kind": "requires-feature",
+        "to": "com.northwind.oms.catalog.feature",
+        "toProduct": "catalog"
+      },
+      {
+        "from": "com.northwind.oms.orders.feature",
+        "fromProduct": "orders",
+        "kind": "contains-bundle",
+        "to": "com.northwind.oms.pricing",
+        "toProduct": "orders"
+      },
+      {
+        "from": "com.northwind.oms.orders.feature",
+        "fromProduct": "orders",
+        "kind": "contains-bundle",
+        "to": "com.northwind.oms.gateway",
+        "toProduct": "orders"
+      },
+      {
+        "from": "com.northwind.oms.payment.feature",
+        "fromProduct": "payment",
+        "kind": "requires-feature",
+        "to": "com.northwind.oms.catalog.feature",
+        "toProduct": "catalog"
+      },
+      {
+        "from": "com.northwind.oms.payment.feature",
+        "fromProduct": "payment",
+        "kind": "requires-feature",
+        "to": "com.northwind.oms.security.feature",
+        "toProduct": "security"
+      },
+      {
+        "from": "com.northwind.oms.payment.feature",
+        "fromProduct": "payment",
+        "kind": "contains-bundle",
+        "to": "com.northwind.oms.payment",
+        "toProduct": "payment"
+      },
+      {
+        "from": "com.northwind.oms.reporting.feature",
+        "fromProduct": "reporting",
+        "kind": "requires-feature",
+        "to": "com.northwind.oms.catalog.feature",
+        "toProduct": "catalog"
+      },
+      {
+        "from": "com.northwind.oms.reporting.feature",
+        "fromProduct": "reporting",
+        "kind": "requires-feature",
+        "to": "com.northwind.oms.orders.feature",
+        "toProduct": "orders"
+      },
+      {
+        "from": "com.northwind.oms.reporting.feature",
+        "fromProduct": "reporting",
+        "kind": "requires-feature",
+        "to": "com.northwind.oms.payment.feature",
+        "toProduct": "payment"
+      },
+      {
+        "from": "com.northwind.oms.reporting.feature",
+        "fromProduct": "reporting",
+        "kind": "contains-bundle",
+        "to": "com.northwind.oms.reporting",
+        "toProduct": "reporting"
+      },
+      {
+        "from": "com.northwind.oms.security.feature",
+        "fromProduct": "security",
+        "kind": "contains-bundle",
+        "to": "com.northwind.oms.security",
+        "toProduct": "security"
+      },
+      {
+        "from": "com.northwind.oms.shipping.feature",
+        "fromProduct": "shipping",
+        "kind": "requires-feature",
+        "to": "com.northwind.oms.catalog.feature",
+        "toProduct": "catalog"
+      },
+      {
+        "from": "com.northwind.oms.shipping.feature",
+        "fromProduct": "shipping",
+        "kind": "requires-feature",
+        "to": "com.northwind.oms.customer.feature",
+        "toProduct": "customer"
+      },
+      {
+        "from": "com.northwind.oms.shipping.feature",
+        "fromProduct": "shipping",
+        "kind": "contains-bundle",
+        "to": "com.northwind.oms.shipping",
+        "toProduct": "shipping"
+      },
+      {
+        "from": "com.northwind.oms.tpcl.slf4j.feature",
+        "fromProduct": "thirdparty",
+        "kind": "contains-bundle",
+        "to": "com.northwind.oms.tpcl.org.slf4j",
+        "toProduct": "thirdparty"
+      }
+    ],
+    "features": {
+      "com.northwind.oms.catalog.feature": {
+        "path": "catalog/features/com.northwind.oms.catalog.feature/feature.xml",
+        "product": "catalog"
+      },
+      "com.northwind.oms.customer.feature": {
+        "path": "customer/features/com.northwind.oms.customer.feature/feature.xml",
+        "product": "customer"
+      },
+      "com.northwind.oms.notification.feature": {
+        "path": "notification/features/com.northwind.oms.notification.feature/feature.xml",
+        "product": "notification"
+      },
+      "com.northwind.oms.orders.feature": {
+        "path": "orders/features/com.northwind.oms.orders.feature/feature.xml",
+        "product": "orders"
+      },
+      "com.northwind.oms.payment.feature": {
+        "path": "payment/features/com.northwind.oms.payment.feature/feature.xml",
+        "product": "payment"
+      },
+      "com.northwind.oms.reporting.feature": {
+        "path": "reporting/features/com.northwind.oms.reporting.feature/feature.xml",
+        "product": "reporting"
+      },
+      "com.northwind.oms.security.feature": {
+        "path": "security/features/com.northwind.oms.security.feature/feature.xml",
+        "product": "security"
+      },
+      "com.northwind.oms.shipping.feature": {
+        "path": "shipping/features/com.northwind.oms.shipping.feature/feature.xml",
+        "product": "shipping"
+      },
+      "com.northwind.oms.tpcl.slf4j.feature": {
+        "path": "thirdparty/features/com.northwind.oms.tpcl.slf4j.feature/feature.xml",
+        "product": "thirdparty"
+      }
+    }
+  },
+  "productDependencies": {
+    "catalog": [],
+    "customer": [],
+    "notification": [
+      "customer",
+      "shipping",
+      "thirdparty"
+    ],
+    "orders": [
+      "catalog",
+      "thirdparty"
+    ],
+    "payment": [
+      "catalog",
+      "security",
+      "thirdparty"
+    ],
+    "reporting": [
+      "catalog",
+      "orders",
+      "payment",
+      "thirdparty"
+    ],
+    "security": [],
+    "shipping": [
+      "catalog",
+      "customer"
+    ],
+    "thirdparty": []
+  },
+  "selectedProducts": [
+    "thirdparty",
+    "catalog",
+    "customer",
+    "security",
+    "payment",
+    "orders",
+    "shipping",
+    "notification",
+    "reporting"
+  ]
+}

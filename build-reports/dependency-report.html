@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pipeline dependency graphs</title>
+  <style>
+    body { font: 16px system-ui, sans-serif; margin: 2rem auto; max-width: 90rem; padding: 0 1rem; }
+    .mermaid { overflow-x: auto; }
+  </style>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, securityLevel: "strict" });
+  </script>
+</head>
+<body>
+  <h1>Pipeline dependency graphs</h1>
+  <p><strong>Build scenario:</strong> changed</p>
+  <p><strong>Changed products:</strong> catalog</p>
+  <p><strong>Selected products (build order):</strong> thirdparty, catalog, customer, security, payment, orders, shipping, notification, reporting</p>
+  <section><h2>Full-build dependency graph</h2><pre class="mermaid">flowchart LR
+  subgraph Maven[&quot;Maven reactor modules&quot;]
+    m_thirdparty[&quot;thirdparty&quot;]
+    m_thirdparty_plugins_com_northwind_oms_tpcl_org_slf4j[&quot;thirdparty/plugins/com.northwind.oms.tpcl.org.slf4j&quot;]
+    m_thirdparty_features_com_northwind_oms_tpcl_slf4j_feature[&quot;thirdparty/features/com.northwind.oms.tpcl.slf4j.feature&quot;]
+    m_catalog[&quot;catalog&quot;]
+    m_catalog_plugins_com_northwind_oms_core[&quot;catalog/plugins/com.northwind.oms.core&quot;]
+    m_catalog_plugins_com_northwind_oms_inventory[&quot;catalog/plugins/com.northwind.oms.inventory&quot;]
+    m_catalog_features_com_northwind_oms_catalog_feature[&quot;catalog/features/com.northwind.oms.catalog.feature&quot;]
+    m_customer[&quot;customer&quot;]
+    m_customer_plugins_com_northwind_oms_customer[&quot;customer/plugins/com.northwind.oms.customer&quot;]
+    m_customer_features_com_northwind_oms_customer_feature[&quot;customer/features/com.northwind.oms.customer.feature&quot;]
+    m_security[&quot;security&quot;]
+    m_security_plugins_com_northwind_oms_security[&quot;security/plugins/com.northwind.oms.security&quot;]
+    m_security_features_com_northwind_oms_security_feature[&quot;security/features/com.northwind.oms.security.feature&quot;]
+    m_payment[&quot;payment&quot;]
+    m_payment_plugins_com_northwind_oms_payment[&quot;payment/plugins/com.northwind.oms.payment&quot;]
+    m_payment_features_com_northwind_oms_payment_feature[&quot;payment/features/com.northwind.oms.payment.feature&quot;]
+    m_orders[&quot;orders&quot;]
+    m_orders_plugins_com_northwind_oms_pricing[&quot;orders/plugins/com.northwind.oms.pricing&quot;]
+    m_orders_plugins_com_northwind_oms_gateway[&quot;orders/plugins/com.northwind.oms.gateway&quot;]
+    m_orders_features_com_northwind_oms_orders_feature[&quot;orders/features/com.northwind.oms.orders.feature&quot;]
+    m_shipping[&quot;shipping&quot;]
+    m_shipping_plugins_com_northwind_oms_shipping[&quot;shipping/plugins/com.northwind.oms.shipping&quot;]
+    m_shipping_features_com_northwind_oms_shipping_feature[&quot;shipping/features/com.northwind.oms.shipping.feature&quot;]
+    m_notification[&quot;notification&quot;]
+    m_notification_plugins_com_northwind_oms_notification[&quot;notification/plugins/com.northwind.oms.notification&quot;]
+    m_notification_features_com_northwind_oms_notification_feature[&quot;notification/features/com.northwind.oms.notification.feature&quot;]
+    m_reporting[&quot;reporting&quot;]
+    m_reporting_plugins_com_northwind_oms_reporting[&quot;reporting/plugins/com.northwind.oms.reporting&quot;]
+    m_reporting_features_com_northwind_oms_reporting_feature[&quot;reporting/features/com.northwind.oms.reporting.feature&quot;]
+    m_thirdparty --&gt;|contains-module| m_thirdparty_plugins_com_northwind_oms_tpcl_org_slf4j
+    m_thirdparty --&gt;|contains-module| m_thirdparty_features_com_northwind_oms_tpcl_slf4j_feature
+    m_catalog --&gt;|contains-module| m_catalog_plugins_com_northwind_oms_core
+    m_catalog --&gt;|contains-module| m_catalog_plugins_com_northwind_oms_inventory
+    m_catalog --&gt;|contains-module| m_catalog_features_com_northwind_oms_catalog_feature
+    m_customer --&gt;|contains-module| m_customer_plugins_com_northwind_oms_customer
+    m_customer --&gt;|contains-module| m_customer_features_com_northwind_oms_customer_feature
+    m_security --&gt;|contains-module| m_security_plugins_com_northwind_oms_security
+    m_security --&gt;|contains-module| m_security_features_com_northwind_oms_security_feature
+    m_payment --&gt;|contains-module| m_payment_plugins_com_northwind_oms_payment
+    m_payment --&gt;|contains-module| m_payment_features_com_northwind_oms_payment_feature
+    m_orders --&gt;|contains-module| m_orders_plugins_com_northwind_oms_pricing
+    m_orders --&gt;|contains-module| m_orders_plugins_com_northwind_oms_gateway
+    m_orders --&gt;|contains-module| m_orders_features_com_northwind_oms_orders_feature
+    m_shipping --&gt;|contains-module| m_shipping_plugins_com_northwind_oms_shipping
+    m_shipping --&gt;|contains-module| m_shipping_features_com_northwind_oms_shipping_feature
+    m_notification --&gt;|contains-module| m_notification_plugins_com_northwind_oms_notification
+    m_notification --&gt;|contains-module| m_notification_features_com_northwind_oms_notification_feature
+    m_reporting --&gt;|contains-module| m_reporting_plugins_com_northwind_oms_reporting
+    m_reporting --&gt;|contains-module| m_reporting_features_com_northwind_oms_reporting_feature
+  end
+  subgraph OSGi[&quot;OSGi bundles and features&quot;]
+    o_com_northwind_oms_core[&quot;com.northwind.oms.core&quot;]
+    o_com_northwind_oms_inventory[&quot;com.northwind.oms.inventory&quot;]
+    o_com_northwind_oms_customer[&quot;com.northwind.oms.customer&quot;]
+    o_com_northwind_oms_notification[&quot;com.northwind.oms.notification&quot;]
+    o_com_northwind_oms_gateway[&quot;com.northwind.oms.gateway&quot;]
+    o_com_northwind_oms_pricing[&quot;com.northwind.oms.pricing&quot;]
+    o_com_northwind_oms_payment[&quot;com.northwind.oms.payment&quot;]
+    o_com_northwind_oms_reporting[&quot;com.northwind.oms.reporting&quot;]
+    o_com_northwind_oms_security[&quot;com.northwind.oms.security&quot;]
+    o_com_northwind_oms_shipping[&quot;com.northwind.oms.shipping&quot;]
+    o_com_northwind_oms_tpcl_org_slf4j[&quot;com.northwind.oms.tpcl.org.slf4j&quot;]
+    f_com_northwind_oms_catalog_feature([&quot;com.northwind.oms.catalog.feature&quot;])
+    f_com_northwind_oms_customer_feature([&quot;com.northwind.oms.customer.feature&quot;])
+    f_com_northwind_oms_notification_feature([&quot;com.northwind.oms.notification.feature&quot;])
+    f_com_northwind_oms_orders_feature([&quot;com.northwind.oms.orders.feature&quot;])
+    f_com_northwind_oms_payment_feature([&quot;com.northwind.oms.payment.feature&quot;])
+    f_com_northwind_oms_reporting_feature([&quot;com.northwind.oms.reporting.feature&quot;])
+    f_com_northwind_oms_security_feature([&quot;com.northwind.oms.security.feature&quot;])
+    f_com_northwind_oms_shipping_feature([&quot;com.northwind.oms.shipping.feature&quot;])
+    f_com_northwind_oms_tpcl_slf4j_feature([&quot;com.northwind.oms.tpcl.slf4j.feature&quot;])
+    o_com_northwind_oms_inventory --&gt;|imports-package| o_com_northwind_oms_core
+    o_com_northwind_oms_inventory --&gt;|imports-package| o_com_northwind_oms_core
+    o_com_northwind_oms_notification --&gt;|imports-package| o_com_northwind_oms_customer
+    o_com_northwind_oms_notification --&gt;|imports-package| o_com_northwind_oms_shipping
+    o_com_northwind_oms_notification --&gt;|requires-bundle| o_com_northwind_oms_tpcl_org_slf4j
+    o_com_northwind_oms_gateway --&gt;|imports-package| o_com_northwind_oms_core
+    o_com_northwind_oms_gateway --&gt;|imports-package| o_com_northwind_oms_core
+    o_com_northwind_oms_gateway --&gt;|imports-package| o_com_northwind_oms_inventory
+    o_com_northwind_oms_gateway --&gt;|imports-package| o_com_northwind_oms_pricing
+    o_com_northwind_oms_gateway --&gt;|requires-bundle| o_com_northwind_oms_tpcl_org_slf4j
+    o_com_northwind_oms_pricing --&gt;|imports-package| o_com_northwind_oms_core
+    o_com_northwind_oms_pricing --&gt;|imports-package| o_com_northwind_oms_core
+    o_com_northwind_oms_payment --&gt;|imports-package| o_com_northwind_oms_core
+    o_com_northwind_oms_payment --&gt;|imports-package| o_com_northwind_oms_security
+    o_com_northwind_oms_payment --&gt;|requires-bundle| o_com_northwind_oms_tpcl_org_slf4j
+    o_com_northwind_oms_reporting --&gt;|imports-package| o_com_northwind_oms_core
+    o_com_northwind_oms_reporting --&gt;|imports-package| o_com_northwind_oms_payment
+    o_com_northwind_oms_reporting --&gt;|imports-package| o_com_northwind_oms_gateway
+    o_com_northwind_oms_reporting --&gt;|requires-bundle| o_com_northwind_oms_tpcl_org_slf4j
+    o_com_northwind_oms_shipping --&gt;|imports-package| o_com_northwind_oms_core
+    o_com_northwind_oms_shipping --&gt;|imports-package| o_com_northwind_oms_customer
+    f_com_northwind_oms_catalog_feature --&gt;|contains-bundle| o_com_northwind_oms_core
+    f_com_northwind_oms_catalog_feature --&gt;|contains-bundle| o_com_northwind_oms_inventory
+    f_com_northwind_oms_customer_feature --&gt;|contains-bundle| o_com_northwind_oms_customer
+    f_com_northwind_oms_notification_feature --&gt;|requires-feature| f_com_northwind_oms_customer_feature
+    f_com_northwind_oms_notification_feature --&gt;|requires-feature| f_com_northwind_oms_shipping_feature
+    f_com_northwind_oms_notification_feature --&gt;|contains-bundle| o_com_northwind_oms_notification
+    f_com_northwind_oms_orders_feature --&gt;|requires-feature| f_com_northwind_oms_catalog_feature
+    f_com_northwind_oms_orders_feature --&gt;|contains-bundle| o_com_northwind_oms_pricing
+    f_com_northwind_oms_orders_feature --&gt;|contains-bundle| o_com_northwind_oms_gateway
+    f_com_northwind_oms_payment_feature --&gt;|requires-feature| f_com_northwind_oms_catalog_feature
+    f_com_northwind_oms_payment_feature --&gt;|requires-feature| f_com_northwind_oms_security_feature
+    f_com_northwind_oms_payment_feature --&gt;|contains-bundle| o_com_northwind_oms_payment
+    f_com_northwind_oms_reporting_feature --&gt;|requires-feature| f_com_northwind_oms_catalog_feature
+    f_com_northwind_oms_reporting_feature --&gt;|requires-feature| f_com_northwind_oms_orders_feature
+    f_com_northwind_oms_reporting_feature --&gt;|requires-feature| f_com_northwind_oms_payment_feature
+    f_com_northwind_oms_reporting_feature --&gt;|contains-bundle| o_com_northwind_oms_reporting
+    f_com_northwind_oms_security_feature --&gt;|contains-bundle| o_com_northwind_oms_security
+    f_com_northwind_oms_shipping_feature --&gt;|requires-feature| f_com_northwind_oms_catalog_feature
+    f_com_northwind_oms_shipping_feature --&gt;|requires-feature| f_com_northwind_oms_customer_feature
+    f_com_northwind_oms_shipping_feature --&gt;|contains-bundle| o_com_northwind_oms_shipping
+    f_com_northwind_oms_tpcl_slf4j_feature --&gt;|contains-bundle| o_com_northwind_oms_tpcl_org_slf4j
+  end</pre></section>
+<section><h2>Changed-products dependency graph</h2><pre class="mermaid">flowchart LR
+  subgraph Maven[&quot;Maven reactor modules&quot;]
+    m_thirdparty[&quot;thirdparty&quot;]
+    m_thirdparty_plugins_com_northwind_oms_tpcl_org_slf4j[&quot;thirdparty/plugins/com.northwind.oms.tpcl.org.slf4j&quot;]
+    m_thirdparty_features_com_northwind_oms_tpcl_slf4j_feature[&quot;thirdparty/features/com.northwind.oms.tpcl.slf4j.feature&quot;]
+    m_catalog[&quot;catalog&quot;]
+    m_catalog_plugins_com_northwind_oms_core[&quot;catalog/plugins/com.northwind.oms.core&quot;]
+    m_catalog_plugins_com_northwind_oms_inventory[&quot;catalog/plugins/com.northwind.oms.inventory&quot;]
+    m_catalog_features_com_northwind_oms_catalog_feature[&quot;catalog/features/com.northwind.oms.catalog.feature&quot;]
+    m_customer[&quot;customer&quot;]
+    m_customer_plugins_com_northwind_oms_customer[&quot;customer/plugins/com.northwind.oms.customer&quot;]
+    m_customer_features_com_northwind_oms_customer_feature[&quot;customer/features/com.northwind.oms.customer.feature&quot;]
+    m_security[&quot;security&quot;]
+    m_security_plugins_com_northwind_oms_security[&quot;security/plugins/com.northwind.oms.security&quot;]
+    m_security_features_com_northwind_oms_security_feature[&quot;security/features/com.northwind.oms.security.feature&quot;]
+    m_payment[&quot;payment&quot;]
+    m_payment_plugins_com_northwind_oms_payment[&quot;payment/plugins/com.northwind.oms.payment&quot;]
+    m_payment_features_com_northwind_oms_payment_feature[&quot;payment/features/com.northwind.oms.payment.feature&quot;]
+    m_orders[&quot;orders&quot;]
+    m_orders_plugins_com_northwind_oms_pricing[&quot;orders/plugins/com.northwind.oms.pricing&quot;]
+    m_orders_plugins_com_northwind_oms_gateway[&quot;orders/plugins/com.northwind.oms.gateway&quot;]
+    m_orders_features_com_northwind_oms_orders_feature[&quot;orders/features/com.northwind.oms.orders.feature&quot;]
+    m_shipping[&quot;shipping&quot;]
+    m_shipping_plugins_com_northwind_oms_shipping[&quot;shipping/plugins/com.northwind.oms.shipping&quot;]
+    m_shipping_features_com_northwind_oms_shipping_feature[&quot;shipping/features/com.northwind.oms.shipping.feature&quot;]
+    m_notification[&quot;notification&quot;]
+    m_notification_plugins_com_northwind_oms_notification[&quot;notification/plugins/com.northwind.oms.notification&quot;]
+    m_notification_features_com_northwind_oms_notification_feature[&quot;notification/features/com.northwind.oms.notification.feature&quot;]
+    m_reporting[&quot;reporting&quot;]
+    m_reporting_plugins_com_northwind_oms_reporting[&quot;reporting/plugins/com.northwind.oms.reporting&quot;]
+    m_reporting_features_com_northwind_oms_reporting_feature[&quot;reporting/features/com.northwind.oms.reporting.feature&quot;]
+    m_thirdparty --&gt;|contains-module| m_thirdparty_plugins_com_northwind_oms_tpcl_org_slf4j
+    m_thirdparty --&gt;|contains-module| m_thirdparty_features_com_northwind_oms_tpcl_slf4j_feature
+    m_catalog --&gt;|contains-module| m_catalog_plugins_com_northwind_oms_core
+    m_catalog --&gt;|contains-module| m_catalog_plugins_com_northwind_oms_inventory
+    m_catalog --&gt;|contains-module| m_catalog_features_com_northwind_oms_catalog_feature
+    m_customer --&gt;|contains-module| m_customer_plugins_com_northwind_oms_customer
+    m_customer --&gt;|contains-module| m_customer_features_com_northwind_oms_customer_feature
+    m_security --&gt;|contains-module| m_security_plugins_com_northwind_oms_security
+    m_security --&gt;|contains-module| m_security_features_com_northwind_oms_security_feature
+    m_payment --&gt;|contains-module| m_payment_plugins_com_northwind_oms_payment
+    m_payment --&gt;|contains-module| m_payment_features_com_northwind_oms_payment_feature
+    m_orders --&gt;|contains-module| m_orders_plugins_com_northwind_oms_pricing
+    m_orders --&gt;|contains-module| m_orders_plugins_com_northwind_oms_gateway
+    m_orders --&gt;|contains-module| m_orders_features_com_northwind_oms_orders_feature
+    m_shipping --&gt;|contains-module| m_shipping_plugins_com_northwind_oms_shipping
+    m_shipping --&gt;|contains-module| m_shipping_features_com_northwind_oms_shipping_feature
+    m_notification --&gt;|contains-module| m_notification_plugins_com_northwind_oms_notification
+    m_notification --&gt;|contains-module| m_notification_features_com_northwind_oms_notification_feature
+    m_reporting --&gt;|contains-module| m_reporting_plugins_com_northwind_oms_reporting
+    m_reporting --&gt;|contains-module| m_reporting_features_com_northwind_oms_reporting_feature
+  end
+  subgraph Impact[&quot;Changed-product impact paths&quot;]
+    p_thirdparty[&quot;thirdparty (selected)&quot;]
+    p_catalog[&quot;catalog (selected)&quot;]
+    p_customer[&quot;customer (selected)&quot;]
+    p_security[&quot;security (selected)&quot;]
+    p_payment[&quot;payment (selected)&quot;]
+    p_orders[&quot;orders (selected)&quot;]
+    p_shipping[&quot;shipping (selected)&quot;]
+    p_notification[&quot;notification (selected)&quot;]
+    p_reporting[&quot;reporting (selected)&quot;]
+    p_catalog --&gt;|dependency| p_payment
+    p_security --&gt;|dependency| p_payment
+    p_thirdparty --&gt;|dependency| p_payment
+    p_catalog --&gt;|dependency| p_orders
+    p_thirdparty --&gt;|dependency| p_orders
+    p_catalog --&gt;|dependency| p_shipping
+    p_customer --&gt;|dependency| p_shipping
+    p_customer --&gt;|dependency| p_notification
+    p_shipping --&gt;|dependency| p_notification
+    p_thirdparty --&gt;|dependency| p_notification
+    p_catalog --&gt;|dependency| p_reporting
+    p_orders --&gt;|dependency| p_reporting
+    p_payment --&gt;|dependency| p_reporting
+    p_thirdparty --&gt;|dependency| p_reporting
+    p_catalog:::changed
+  end
+  subgraph OSGi[&quot;OSGi bundles and features&quot;]
+    o_com_northwind_oms_core[&quot;com.northwind.oms.core&quot;]
+    o_com_northwind_oms_inventory[&quot;com.northwind.oms.inventory&quot;]
+    o_com_northwind_oms_customer[&quot;com.northwind.oms.customer&quot;]
+    o_com_northwind_oms_notification[&quot;com.northwind.oms.notification&quot;]
+    o_com_northwind_oms_gateway[&quot;com.northwind.oms.gateway&quot;]
+    o_com_northwind_oms_pricing[&quot;com.northwind.oms.pricing&quot;]
+    o_com_northwind_oms_payment[&quot;com.northwind.oms.payment&quot;]
+    o_com_northwind_oms_reporting[&quot;com.northwind.oms.reporting&quot;]
+    o_com_northwind_oms_security[&quot;com.northwind.oms.security&quot;]
+    o_com_northwind_oms_shipping[&quot;com.northwind.oms.shipping&quot;]
+    o_com_northwind_oms_tpcl_org_slf4j[&quot;com.northwind.oms.tpcl.org.slf4j&quot;]
+    f_com_northwind_oms_catalog_feature([&quot;com.northwind.oms.catalog.feature&quot;])
+    f_com_northwind_oms_customer_feature([&quot;com.northwind.oms.customer.feature&quot;])
+    f_com_northwind_oms_notification_feature([&quot;com.northwind.oms.notification.feature&quot;])
+    f_com_northwind_oms_orders_feature([&quot;com.northwind.oms.orders.feature&quot;])
+    f_com_northwind_oms_payment_feature([&quot;com.northwind.oms.payment.feature&quot;])
+    f_com_northwind_oms_reporting_feature([&quot;com.northwind.oms.reporting.feature&quot;])
+    f_com_northwind_oms_security_feature([&quot;com.northwind.oms.security.feature&quot;])
+    f_com_northwind_oms_shipping_feature([&quot;com.northwind.oms.shipping.feature&quot;])
+    f_com_northwind_oms_tpcl_slf4j_feature([&quot;com.northwind.oms.tpcl.slf4j.feature&quot;])
+    o_com_northwind_oms_inventory --&gt;|imports-package| o_com_northwind_oms_core
+    o_com_northwind_oms_inventory --&gt;|imports-package| o_com_northwind_oms_core
+    o_com_northwind_oms_notification --&gt;|imports-package| o_com_northwind_oms_customer
+    o_com_northwind_oms_notification --&gt;|imports-package| o_com_northwind_oms_shipping
+    o_com_northwind_oms_notification --&gt;|requires-bundle| o_com_northwind_oms_tpcl_org_slf4j
+    o_com_northwind_oms_gateway --&gt;|imports-package| o_com_northwind_oms_core
+    o_com_northwind_oms_gateway --&gt;|imports-package| o_com_northwind_oms_core
+    o_com_northwind_oms_gateway --&gt;|imports-package| o_com_northwind_oms_inventory
+    o_com_northwind_oms_gateway --&gt;|imports-package| o_com_northwind_oms_pricing
+    o_com_northwind_oms_gateway --&gt;|requires-bundle| o_com_northwind_oms_tpcl_org_slf4j
+    o_com_northwind_oms_pricing --&gt;|imports-package| o_com_northwind_oms_core
+    o_com_northwind_oms_pricing --&gt;|imports-package| o_com_northwind_oms_core
+    o_com_northwind_oms_payment --&gt;|imports-package| o_com_northwind_oms_core
+    o_com_northwind_oms_payment --&gt;|imports-package| o_com_northwind_oms_security
+    o_com_northwind_oms_payment --&gt;|requires-bundle| o_com_northwind_oms_tpcl_org_slf4j
+    o_com_northwind_oms_reporting --&gt;|imports-package| o_com_northwind_oms_core
+    o_com_northwind_oms_reporting --&gt;|imports-package| o_com_northwind_oms_payment
+    o_com_northwind_oms_reporting --&gt;|imports-package| o_com_northwind_oms_gateway
+    o_com_northwind_oms_reporting --&gt;|requires-bundle| o_com_northwind_oms_tpcl_org_slf4j
+    o_com_northwind_oms_shipping --&gt;|imports-package| o_com_northwind_oms_core
+    o_com_northwind_oms_shipping --&gt;|imports-package| o_com_northwind_oms_customer
+    f_com_northwind_oms_catalog_feature --&gt;|contains-bundle| o_com_northwind_oms_core
+    f_com_northwind_oms_catalog_feature --&gt;|contains-bundle| o_com_northwind_oms_inventory
+    f_com_northwind_oms_customer_feature --&gt;|contains-bundle| o_com_northwind_oms_customer
+    f_com_northwind_oms_notification_feature --&gt;|requires-feature| f_com_northwind_oms_customer_feature
+    f_com_northwind_oms_notification_feature --&gt;|requires-feature| f_com_northwind_oms_shipping_feature
+    f_com_northwind_oms_notification_feature --&gt;|contains-bundle| o_com_northwind_oms_notification
+    f_com_northwind_oms_orders_feature --&gt;|requires-feature| f_com_northwind_oms_catalog_feature
+    f_com_northwind_oms_orders_feature --&gt;|contains-bundle| o_com_northwind_oms_pricing
+    f_com_northwind_oms_orders_feature --&gt;|contains-bundle| o_com_northwind_oms_gateway
+    f_com_northwind_oms_payment_feature --&gt;|requires-feature| f_com_northwind_oms_catalog_feature
+    f_com_northwind_oms_payment_feature --&gt;|requires-feature| f_com_northwind_oms_security_feature
+    f_com_northwind_oms_payment_feature --&gt;|contains-bundle| o_com_northwind_oms_payment
+    f_com_northwind_oms_reporting_feature --&gt;|requires-feature| f_com_northwind_oms_catalog_feature
+    f_com_northwind_oms_reporting_feature --&gt;|requires-feature| f_com_northwind_oms_orders_feature
+    f_com_northwind_oms_reporting_feature --&gt;|requires-feature| f_com_northwind_oms_payment_feature
+    f_com_northwind_oms_reporting_feature --&gt;|contains-bundle| o_com_northwind_oms_reporting
+    f_com_northwind_oms_security_feature --&gt;|contains-bundle| o_com_northwind_oms_security
+    f_com_northwind_oms_shipping_feature --&gt;|requires-feature| f_com_northwind_oms_catalog_feature
+    f_com_northwind_oms_shipping_feature --&gt;|requires-feature| f_com_northwind_oms_customer_feature
+    f_com_northwind_oms_shipping_feature --&gt;|contains-bundle| o_com_northwind_oms_shipping
+    f_com_northwind_oms_tpcl_slf4j_feature --&gt;|contains-bundle| o_com_northwind_oms_tpcl_org_slf4j
+  end
+  classDef selected fill:#d1fae5,stroke:#059669,stroke-width:2px
+  classDef changed fill:#fef3c7,stroke:#d97706,stroke-width:3px
+  class m_catalog selected
+  class m_catalog_plugins_com_northwind_oms_core selected
+  class m_catalog_plugins_com_northwind_oms_inventory selected
+  class m_catalog_features_com_northwind_oms_catalog_feature selected
+  class o_com_northwind_oms_core selected
+  class o_com_northwind_oms_inventory selected
+  class f_com_northwind_oms_catalog_feature selected
+  class m_customer selected
+  class m_customer_plugins_com_northwind_oms_customer selected
+  class m_customer_features_com_northwind_oms_customer_feature selected
+  class o_com_northwind_oms_customer selected
+  class f_com_northwind_oms_customer_feature selected
+  class m_notification selected
+  class m_notification_plugins_com_northwind_oms_notification selected
+  class m_notification_features_com_northwind_oms_notification_feature selected
+  class o_com_northwind_oms_notification selected
+  class f_com_northwind_oms_notification_feature selected
+  class m_orders selected
+  class m_orders_plugins_com_northwind_oms_pricing selected
+  class m_orders_plugins_com_northwind_oms_gateway selected
+  class m_orders_features_com_northwind_oms_orders_feature selected
+  class o_com_northwind_oms_gateway selected
+  class o_com_northwind_oms_pricing selected
+  class f_com_northwind_oms_orders_feature selected
+  class m_payment selected
+  class m_payment_plugins_com_northwind_oms_payment selected
+  class m_payment_features_com_northwind_oms_payment_feature selected
+  class o_com_northwind_oms_payment selected
+  class f_com_northwind_oms_payment_feature selected
+  class m_reporting selected
+  class m_reporting_plugins_com_northwind_oms_reporting selected
+  class m_reporting_features_com_northwind_oms_reporting_feature selected
+  class o_com_northwind_oms_reporting selected
+  class f_com_northwind_oms_reporting_feature selected
+  class m_security selected
+  class m_security_plugins_com_northwind_oms_security selected
+  class m_security_features_com_northwind_oms_security_feature selected
+  class o_com_northwind_oms_security selected
+  class f_com_northwind_oms_security_feature selected
+  class m_shipping selected
+  class m_shipping_plugins_com_northwind_oms_shipping selected
+  class m_shipping_features_com_northwind_oms_shipping_feature selected
+  class o_com_northwind_oms_shipping selected
+  class f_com_northwind_oms_shipping_feature selected
+  class m_thirdparty selected
+  class m_thirdparty_plugins_com_northwind_oms_tpcl_org_slf4j selected
+  class m_thirdparty_features_com_northwind_oms_tpcl_slf4j_feature selected
+  class o_com_northwind_oms_tpcl_org_slf4j selected
+  class f_com_northwind_oms_tpcl_slf4j_feature selected
+  class p_catalog changed</pre></section>
+</body>
+</html>
