@@ -138,10 +138,16 @@ jobs:
             --file pom.xml \
             verify
 
-      - name: Debug jar locations
-        if: always()
-        run: find . -name '*.jar' -not -path './.git/*' | head -50
-
+           - name: Debug build output
+             if: always()
+             run: |
+          echo "maven_projects='${{ needs.plan.outputs.maven_projects }}'"
+          echo "build_mode='${{ needs.plan.outputs.build_mode }}'"
+          echo "--- jars found:"
+          find . -name '*.jar' -not -path './.git/*' | head -50
+          echo "--- target directories:"
+          find . -type d -name target -not -path './.git/*' | head -50
+      
       - name: Upload bundle and feature JARs
         uses: actions/upload-artifact@v4
         with:
